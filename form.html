@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Rápido</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #222;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        hr {
+            margin: 25px 0;
+            border: 0;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .resultado-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .registro-card {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .registro-card strong {
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Formulário de Cadastro</h2>
+
+    <form id="cadastroForm">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" required placeholder="Digite o nome">
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" required placeholder="exemplo@dominio.com">
+        </div>
+
+        <div class="form-group">
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" required placeholder="(00) 00000-0000">
+        </div>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <hr>
+
+    <div class="resultado-container" id="resultadoContainer">
+        </div>
+</div>
+
+<script>
+    const form = document.getElementById('cadastroForm');
+    const resultadoContainer = document.getElementById('resultadoContainer');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o recarregamento da página
+
+        // Captura os valores dos campos
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const telefone = document.getElementById('telefone').value;
+
+        // Cria o elemento para exibir a nova linha
+        const novoCard = document.createElement('div');
+        novoCard.classList.add('registro-card');
+        novoCard.innerHTML = `
+            <div><strong>Nome:</strong> ${nome}</div>
+            <div><strong>E-mail:</strong> ${email}</div>
+            <div><strong>Telefone:</strong> ${telefone}</div>
+        `;
+
+        // Adiciona abaixo dos anteriores
+        resultadoContainer.appendChild(novoCard);
+
+        // Limpa os campos do formulário e foca no primeiro input
+        form.reset();
+        document.getElementById('nome').focus();
+    });
+</script>
+
+</body>
+</html>
