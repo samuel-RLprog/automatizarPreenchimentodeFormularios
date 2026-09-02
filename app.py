@@ -15,7 +15,7 @@ pyautogui.write('chrome')
 #carregar o navegador
 pyautogui.press('enter')
 #acessar o site
-pyautogui.write('file:///C:/Automacao/form.html')
+pyautogui.write('endereco/form.html')
 #acessar o site
 pyautogui.press('enter')    
 
